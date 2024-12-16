@@ -50,18 +50,38 @@ public class  ReadingFiles {
                 System.out.println("File Path: " + file);
                 //Starts at line 0 and moves line by line through the file
                 int line = 0;
+                int space = 0;
+                int total;
+                int characters = 0;
                 //Rec holds what the reader finds on the line
                 String rec = "";
 
+
                 //Moving through file, reading, and printing each line of the selected file
+                int letters = 0;
                 while (reader.ready()) {
                     rec = reader.readLine();
+                    characters += rec.length();
                     line++;
+                    letters += rec.length();
+                 for (int i = 0; i < rec.length(); i++){
+                    String word = rec.substring(i, i+1);
+                    if (word.equalsIgnoreCase(" ")){
+                        space++;
+                    }
+                 }
                     //Prints the line # and the contents of the line
                     System.out.printf("\nLine%4d: %-60s ", line, rec);
+
                 }
                 reader.close(); // must close the file to seal it and clear buffer
                 System.out.println("\n\nData file read!"); //Success message
+                total = space + line;
+                System.out.println("File Summary:");
+                System.out.println("Number of lines: " + line);
+                System.out.println("Number of spaces: " + space);
+                System.out.println("Number of words: " + total);
+                System.out.println("Number of characters: " + characters);
 
                  /*
                     This is where the program stops displaying the read file to the user
